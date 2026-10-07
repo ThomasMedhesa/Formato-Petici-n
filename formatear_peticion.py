@@ -322,6 +322,9 @@ def ejecutar_linea_comandos() -> None:
 def ejecutar_interfaz() -> None:
     ventana = tk.Tk()
     ventana.title("Formato de petición")
+    icono = ruta_recurso("icono.ico")
+    if icono.exists():
+        ventana.iconbitmap(icono)
     ventana.resizable(False, False)
     ventana.minsize(620, 210)
 

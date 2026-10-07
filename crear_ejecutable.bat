@@ -2,9 +2,20 @@
 setlocal
 cd /d "%~dp0"
 
+set "PLANTILLA="
+for %%f in ("EJEMPLO *ELECTRICIDAD.xlsx") do set "PLANTILLA=%%~ff"
+if not defined PLANTILLA (
+  echo.
+  echo No se encontro la plantilla EJEMPLO PETICION ELECTRICIDAD.xlsx
+  pause
+  exit /b 1
+)
+
 python -m PyInstaller --noconfirm --clean --onefile --windowed ^
   --name FormatearPeticion ^
-  --add-data "EJEMPLO PETICIÓN ELECTRICIDAD.xlsx;." ^
+  --icon "icono.ico" ^
+  --add-data "%PLANTILLA%;." ^
+  --add-data "icono.ico;." ^
   formatear_peticion.py
 
 if errorlevel 1 (
